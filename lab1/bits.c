@@ -160,7 +160,7 @@ int bitXor(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return 2;
+  return 0xff & (x >> (n << 3));
 }
 /* 
  * copyLSB - set all bits of result to least significant bit of x
@@ -170,7 +170,7 @@ int getByte(int x, int n) {
  *   Rating: 2
  */
 int copyLSB(int x) {
-  return 2;
+  return ~(x & 1) + 1;
 }
 /* 
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
@@ -224,7 +224,7 @@ int bang(int x) {
  *   Rating: 2 
  */
 int leastBitPos(int x) {
-  return 2;
+  return x & (~x + 1);
 }
 /* 
  * negate - return -x 
@@ -234,7 +234,7 @@ int leastBitPos(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x+1;
 }
 /* 
  * isNonNegative - return 1 if x >= 0, return 0 otherwise 
