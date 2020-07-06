@@ -203,7 +203,20 @@ int logicalShift(int x, int n) {
  *   Rating: 4
  */
 int bitCount(int x) {
-  return 2;
+	int sum = 0;
+	int mask = 0x11 | (0x11 << 8);
+	mask = mask | (mask << 16);
+	sum += x & mask;
+	sum += (x >> 1) &mask;
+	sum += (x >> 2) &mask;
+	sum += (x >> 3) &mask;
+	mask = 0xff | (0xff << 8);
+	sum = (sum & mask) + ((sum >> 16)&mask);
+	mask = (0xf << 8) + 0xf;
+	sum = (sum & mask) + ((sum >> 4)&mask);
+	mask = 0xff;
+	sum = (sum & mask) + ((sum >> 8)&mask);
+	return sum;
 }
 /* 
  * bang - Compute !x without using !
